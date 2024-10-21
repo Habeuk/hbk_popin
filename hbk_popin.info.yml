@@ -1,0 +1,5 @@
+name: "hbk_popin"
+type: module
+description: "Module popin pour afficher des popups"
+package: Custom
+core_version_requirement: ^9 || ^10

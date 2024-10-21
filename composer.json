@@ -1,0 +1,18 @@
+{
+  "name": "habeuk/hbk_popin",
+  "description": "Module",
+  "type": "drupal-custom-module",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "kouwa stephane",
+      "email": "kksasteph888@gmail.com"
+    },
+    {
+      "name": "Vysti",
+      "email": "ngahabanda@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {}
+}

@@ -1,0 +1,16 @@
+<?php
+
+/**
+ *
+ * @file
+ * Primary module hooks for Hbk Cforge module.
+ */
+function hbk_popin_theme($existing, $type, $theme, $path) {
+  $hooks['hbk_popin_block'] = [
+    'variables' => [
+      'popin' => null,
+      'attributes' => NULL
+    ]
+  ];
+  return $hooks;
+}

@@ -1,0 +1,7 @@
+block.settings.hbk_popin:
+  type: block_settings
+  label: "Popin block"
+  mapping:
+    example:
+      type: string
+      label: Example
