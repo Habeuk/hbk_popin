@@ -5,3 +5,11 @@ block.settings.hbk_popin:
     example:
       type: string
       label: Example
+
+block.settings.hbk_popin_popup:
+  type: block_settings
+  label: 'popup block'
+  mapping:
+    example:
+      type: string
+      label: Example
