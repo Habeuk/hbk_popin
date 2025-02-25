@@ -1,9 +1,11 @@
 popin_style:
   css:
     theme:
-      css/popin.css: {}
+      css/popin.css: {}        
+      css/popup.css: {}        
   js:
-    js/popin.js: {}
+    js/popin.js: {}           
+    js/popup.js: {}          
   dependencies:
     - core/once
     - core/drupal
