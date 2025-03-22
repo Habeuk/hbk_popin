@@ -1,7 +1,4 @@
-{{ attach_library('hbk_popin/popup') }}
-{{ attach_library('hbk_popin/popup') }}
-<div
-	class="teaser_title_name whatsapp-widget">
+<div {{ attributes.addClass('whatsapp-widget') }}>
 	<!-- Le bouton WhatsApp flottant -->
 	<div class="whatsapp-btn">
 		<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"/>
@@ -23,5 +20,4 @@
 		<textarea class="mb-4 whatsapp-message" placeholder="Écris ton message..."></textarea>
 		<button class="whatsapp-message-btn">Envoyer</button>
 	</div>
-
 </div>

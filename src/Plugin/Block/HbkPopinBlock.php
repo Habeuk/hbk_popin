@@ -1,6 +1,5 @@
 <?php
-
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Drupal\hbk_popin\Plugin\Block;
 
@@ -20,12 +19,12 @@ use Drupal\Component\Serialization\Json;
  *
  * @Block(
  *   id = "hbk_popin",
- *   admin_label = @Translation("Popin"),
+ *   admin_label = @Translation("Popin image"),
  *   category = @Translation("Popin"),
  * )
  */
 final class HbkPopinBlock extends BlockBase {
-
+  
   /**
    *
    * {@inheritdoc}
@@ -46,7 +45,7 @@ final class HbkPopinBlock extends BlockBase {
       ]
     ];
   }
-
+  
   /**
    *
    * {@inheritdoc}
@@ -77,14 +76,15 @@ final class HbkPopinBlock extends BlockBase {
         'data-autocomplete-first-character-blacklist' => '/#?'
       ],
       '#process_default_value' => FALSE,
-      '#description' => $this->t('This must be an internal path such as %add-node. You can also start typing the title of a piece of content to select it. <br>
+      '#description' => $this->t(
+        'This must be an internal path such as %add-node. You can also start typing the title of a piece of content to select it. <br>
         Enter %front to link to the front page. Enter %nolink to display link text only. <br>
         Enter %button to display keyboard-accessible link text only.', [
-        '%add-node' => '/node/add',
-        '%front' => '<front>',
-        '%nolink' => '<nolink>',
-        '%button' => '<button>'
-      ])
+          '%add-node' => '/node/add',
+          '%front' => '<front>',
+          '%nolink' => '<nolink>',
+          '%button' => '<button>'
+        ])
     ];
     $form['image'] = [
       '#type' => 'managed_file',
@@ -126,7 +126,7 @@ final class HbkPopinBlock extends BlockBase {
         'by_session' => 'Une seule fois par session'
       ]
     ];
-
+    
     $form['settings']['position_affichage'] = [
       '#type' => 'select',
       '#title' => $this->t('Une seule fois par session'),
@@ -163,7 +163,7 @@ final class HbkPopinBlock extends BlockBase {
     ];
     return $form;
   }
-
+  
   /**
    *
    * {@inheritdoc}
@@ -188,7 +188,7 @@ final class HbkPopinBlock extends BlockBase {
       }
     }
   }
-
+  
   /**
    *
    * {@inheritdoc}
@@ -198,7 +198,8 @@ final class HbkPopinBlock extends BlockBase {
     $url = null;
     try {
       $url = Url::fromUri($this->configuration['lien']);
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
     }
     if ($url) {
       $url = [
@@ -247,7 +248,7 @@ final class HbkPopinBlock extends BlockBase {
     $build['content']['#attached']['library'][] = 'hbk_popin/popin_style';
     return $build;
   }
-
+  
   /**
    * Charge les styles d'image.
    *
@@ -263,12 +264,12 @@ final class HbkPopinBlock extends BlockBase {
     }
     return $image_styles;
   }
-
+  
   protected function getPopinId() {
     $Random = new Random();
     return Html::cleanCssIdentifier($Random->name(15, true));
   }
-
+  
   /**
    * Gets the URI without the 'internal:' or 'entity:' scheme.
    *
@@ -280,7 +281,7 @@ final class HbkPopinBlock extends BlockBase {
    *
    * @param string $uri
    *        The URI to get the displayable string for.
-   *
+   *        
    * @return string
    *
    * @see static::getUserEnteredStringAsUri()
@@ -289,24 +290,25 @@ final class HbkPopinBlock extends BlockBase {
     if (!$uri)
       return '';
     $scheme = parse_url($uri, PHP_URL_SCHEME);
-
+    
     // By default, the displayable string is the URI.
     $displayable_string = $uri;
-
+    
     // A different displayable string may be chosen in case of the 'internal:'
     // or 'entity:' built-in schemes.
     if ($scheme === 'internal') {
       $uri_reference = explode(':', $uri, 2)[1];
-
+      
       // @todo '<front>' is valid input for BC reasons, may be removed by
       // https://www.drupal.org/node/2421941
       $path = parse_url($uri, PHP_URL_PATH);
       if ($path === '/') {
         $uri_reference = '<front>' . substr($uri_reference, 1);
       }
-
+      
       $displayable_string = $uri_reference;
-    } elseif ($scheme === 'entity') {
+    }
+    elseif ($scheme === 'entity') {
       [
         $entity_type,
         $entity_id
@@ -319,10 +321,11 @@ final class HbkPopinBlock extends BlockBase {
           $entity
         ]);
       }
-    } elseif ($scheme === 'route') {
+    }
+    elseif ($scheme === 'route') {
       $displayable_string = ltrim($displayable_string, 'route:');
     }
-
+    
     return $displayable_string;
   }
 }
