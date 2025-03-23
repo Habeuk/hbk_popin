@@ -22,8 +22,8 @@ final class HbkPopinController extends ControllerBase {
   public function __invoke(Request $request) {
     $content = $request->getContent();
     $content = Json::decode($content);
-    if (!empty($content['message']))
-      $this->sendMail('stephanekouwa@gmail.com', $content['message']);
+    if (!empty($content['message']) && !empty($content['send_email']))
+      $this->sendMail($content['send_email'], $content['message'], $content['usercontact']);
     return HttpResponse::response($content);
   }
   
@@ -35,7 +35,7 @@ final class HbkPopinController extends ControllerBase {
    * @param string $to
    * @param string $password
    */
-  protected function sendMail($to, $message) {
+  protected function sendMail($to, $message, $usercontact) {
     $siteInfo = ConfigDrupal::config('system.site');
     $mailSystem = ConfigDrupal::config('mailsystem.settings');
     /**
@@ -52,6 +52,8 @@ final class HbkPopinController extends ControllerBase {
     $mailPlugin = $PluginMailManger->createInstance($mailSystem['defaults']['sender']);
     // $module = 'login_rx_vuejs';
     $key = 'hbk_popin_send_mail';
+    $message = "Message : <div> $message </div> User contact : <p>$usercontact<p>";
+    
     $datas = [
       'id' => $key,
       'to' => $to,

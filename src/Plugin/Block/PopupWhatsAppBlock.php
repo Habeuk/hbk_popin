@@ -48,7 +48,8 @@ final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPlug
       'placeholder' => '',
       'class_container' => 'right button',
       'titre' => '',
-      'phone_number' => ''
+      'phone_number' => '',
+      'send_email' => ''
       // 'block_load_style_scss_js' => 'hbk_popin/custom-buton'
     ];
   }
@@ -75,6 +76,11 @@ final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPlug
       '#type' => 'textfield',
       '#title' => 'Titre',
       '#default_value' => $this->configuration['titre']
+    ];
+    $form['send_email'] = [
+      '#type' => 'textfield',
+      '#title' => "Envoit une copie du message à",
+      '#default_value' => $this->configuration['send_email']
     ];
     // Ajoute un champ texte pour la classe du conteneur
     $form['class_container'] = [
@@ -104,6 +110,7 @@ final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPlug
     $this->configuration['placeholder'] = $form_state->getValue('placeholder');
     $this->configuration['phone_number'] = $form_state->getValue('phone_number');
     $this->configuration['titre'] = $form_state->getValue('titre');
+    $this->configuration['send_email'] = $form_state->getValue('send_email');
     // $library = $this->configuration['block_load_style_scss_js'];
     // $this->LayoutgenentitystylesServices->addStyleFromModule($library,
     // 'hbk_you_custom_popup', 'default');
@@ -121,6 +128,7 @@ final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPlug
       '#popin_placeholder' => !empty($this->configuration['placeholder']) ? $this->t($this->configuration['placeholder']) : '',
       '#phone_number' => !empty($this->configuration['phone_number']) ? $this->t($this->configuration['phone_number']) : '',
       '#popin_titre' => !empty($this->configuration['titre']) ? $this->t($this->configuration['titre']) : '',
+      '#popin_send_email' => !empty($this->configuration['send_email']) ? $this->t($this->configuration['send_email']) : '',
       '#attributes' => [
         'class' => [
           'whatsapp-popup',

@@ -18,7 +18,8 @@ function hbk_popin_theme($existing, $type, $theme, $path) {
       'popin_placeholder' => null,
       'popin_titre' => null,
       'phone_number' => null,
-      'attributes' => NULL
+      'attributes' => NULL,
+      'popin_send_email' => null
     ]
   ];
   return $hooks;

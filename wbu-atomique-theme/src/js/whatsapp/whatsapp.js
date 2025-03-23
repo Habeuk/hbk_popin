@@ -7,12 +7,13 @@ class whatsappMessage {
   init() {
     this.context.querySelectorAll(".whatsapp-widget").forEach((whatsappElement) => {
       const phone_number = whatsappElement.querySelector(".whatsapp-chat").getAttribute("data-phone-number");
+      const send_email = whatsappElement.querySelector(".whatsapp-chat").getAttribute("data-send-email");
       if (phone_number) {
         whatsappElement.classList.remove("d-none");
         this.hideTextarea(whatsappElement);
       }
       this.closebox(whatsappElement);
-      this.envoyerMessage(whatsappElement, phone_number);
+      this.envoyerMessage(whatsappElement, phone_number, send_email);
       whatsappElement.querySelector(".whatsapp-btn").addEventListener("click", () => {
         this.ShowTextarea(whatsappElement);
       });
@@ -26,13 +27,13 @@ class whatsappMessage {
     whatsappElement.querySelector(".whatsapp-chat").classList.remove("open");
     whatsappElement.querySelector(".whatsapp-btn").classList.add("open");
   }
-  envoyerMessage(whatsappElement, numero) {
+  envoyerMessage(whatsappElement, numero, send_email) {
     whatsappElement.querySelector(".whatsapp-message-btn").addEventListener("click", (event) => {
       event.preventDefault();
       var message = whatsappElement.querySelector(".whatsapp-message").value;
       var userContact = whatsappElement.querySelector(".user-contact").value;
       if (message) {
-        this.sendMail(message, userContact);
+        this.sendMail(message, userContact, send_email);
         var url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(message);
         window.open(url, "_blank");
       } else {
@@ -43,8 +44,8 @@ class whatsappMessage {
       }
     });
   }
-  sendMail(message, userContact) {
-    config.post("/hbk-popin/save/message", { message: message, userContact: userContact });
+  sendMail(message, userContact, send_email) {
+    config.post("/hbk-popin/save/message", { message: message, usercontact: userContact, send_email: send_email });
   }
   closebox(whatsappElement) {
     whatsappElement.querySelector(".icone-close").addEventListener("click", () => {
