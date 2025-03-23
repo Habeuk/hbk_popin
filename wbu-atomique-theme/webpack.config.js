@@ -10,8 +10,8 @@ console.log("env : ", env);
 console.log("env : ", devMode);
 const plugins = [
   new MiniCssExtractPlugin({
-    filename: "./css/[name].css",
-    chunkFilename: "[id].css",
+    filename: "./[name].css",
+    chunkFilename: "./[id].css",
   }),
   new ESLintPlugin({
     // Ajouter ESLintPlugin
@@ -26,9 +26,10 @@ module.exports = {
   mode: env || "development",
   entry: {
     popin: "./src/js/popin-drupal.js",
+    "drupal-whatsapp": "./src/js/whatsapp/drupal-whatsapp.js",
   },
   output: {
-    //path: path.resolve(__dirname, "../css/"),
+    // path: path.resolve(__dirname, "../css/"),
     path: path.resolve(__dirname, "../css/"),
     // publicPath: "/dist/",
     filename: "../js/[name].js",
@@ -55,16 +56,16 @@ module.exports = {
         test: /\.(sa|sc|c)ss$/,
         use: [
           // 1/2 permet d'injecter directeent le style dans le navigateur.
-//          devMode
-//            ? "style-loader"
-//            : {
-//                loader: MiniCssExtractPlugin.loader,
-//                options: {
-//                  publicPath: "../",
-//                },
-//              },
+          //          devMode
+          //            ? "style-loader"
+          //            : {
+          //                loader: MiniCssExtractPlugin.loader,
+          //                options: {
+          //                  publicPath: "../",
+          //                },
+          //              },
           // 2/2 Permet de modifier directement les fichiers css.
-		  // On doit desactiver la premiere approche, car on a pour abitude de fonctionner avec la seconde.
+          // On doit desactiver la premiere approche, car on a pour abitude de fonctionner avec la seconde.
           {
             loader: MiniCssExtractPlugin.loader,
             options: {

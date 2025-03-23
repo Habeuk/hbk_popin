@@ -1,0 +1,7 @@
+hbk_popin.save.message:
+  path: '/hbk-popin/save/message'
+  defaults:
+    _title: 'Send message'
+    _controller: '\Drupal\hbk_popin\Controller\HbkPopinController'
+  requirements:
+    _permission: 'access content'

@@ -48,8 +48,8 @@ final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPlug
       'placeholder' => '',
       'class_container' => 'right button',
       'titre' => '',
-      'block_load_style_scss_js' => 'hbk_popin/custom-buton',
       'phone_number' => ''
+      // 'block_load_style_scss_js' => 'hbk_popin/custom-buton'
     ];
   }
   
@@ -104,8 +104,9 @@ final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPlug
     $this->configuration['placeholder'] = $form_state->getValue('placeholder');
     $this->configuration['phone_number'] = $form_state->getValue('phone_number');
     $this->configuration['titre'] = $form_state->getValue('titre');
-    $library = $this->configuration['block_load_style_scss_js'];
-    $this->LayoutgenentitystylesServices->addStyleFromModule($library, 'hbk_you_custom_popup', 'default');
+    // $library = $this->configuration['block_load_style_scss_js'];
+    // $this->LayoutgenentitystylesServices->addStyleFromModule($library,
+    // 'hbk_you_custom_popup', 'default');
   }
   
   /**
@@ -116,10 +117,10 @@ final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPlug
     // Prépare le rendu avec le message et les attributs nécessaires.
     $content = [
       '#theme' => 'hbk_popin_whatsappmessage',
-      '#popin_content' => $this->configuration['message'],
-      '#popin_placeholder' => $this->configuration['placeholder'],
-      '#phone_number' => $this->configuration['phone_number'],
-      '#popin_titre' => $this->configuration['titre'],
+      '#popin_content' => !empty($this->configuration['message']) ? $this->t($this->configuration['message']) : '',
+      '#popin_placeholder' => !empty($this->configuration['placeholder']) ? $this->t($this->configuration['placeholder']) : '',
+      '#phone_number' => !empty($this->configuration['phone_number']) ? $this->t($this->configuration['phone_number']) : '',
+      '#popin_titre' => !empty($this->configuration['titre']) ? $this->t($this->configuration['titre']) : '',
       '#attributes' => [
         'class' => [
           'whatsapp-popup',
@@ -127,6 +128,7 @@ final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPlug
         ]
       ]
     ];
+    $content['#attached']['library'][] = 'hbk_popin/popin_whasapp';
     //
     return [
       'content' => $content,

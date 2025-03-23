@@ -11,9 +11,9 @@ popin_style:
 popin_whasapp:
   css:
     theme:      
-      css/popup.css: {}        
+      css/drupal-whatsapp.css: {}        
   js:        
-    js/popup.js: {}          
+    js/drupal-whatsapp.js: {}          
   dependencies:
     - core/once
     - core/drupal
