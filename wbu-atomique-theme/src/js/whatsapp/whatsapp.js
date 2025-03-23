@@ -30,8 +30,9 @@ class whatsappMessage {
     whatsappElement.querySelector(".whatsapp-message-btn").addEventListener("click", (event) => {
       event.preventDefault();
       var message = whatsappElement.querySelector(".whatsapp-message").value;
+      var userContact = whatsappElement.querySelector(".user-contact").value;
       if (message) {
-        this.sendMail(message);
+        this.sendMail(message, userContact);
         var url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(message);
         window.open(url, "_blank");
       } else {
@@ -42,8 +43,8 @@ class whatsappMessage {
       }
     });
   }
-  sendMail(message) {
-    config.post("/hbk-popin/save/message", { message: message });
+  sendMail(message, userContact) {
+    config.post("/hbk-popin/save/message", { message: message, userContact: userContact });
   }
   closebox(whatsappElement) {
     whatsappElement.querySelector(".icone-close").addEventListener("click", () => {

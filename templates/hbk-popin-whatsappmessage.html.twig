@@ -14,12 +14,13 @@
 				</svg>
 			</button>
 		</div>
+		<input class="user-contact form-control border-radius-5 mb-3 " type="text" placeholder="{% trans %}Email or phone number{% endtrans %}" />
 		<!-- Zone de message -->
 		{% if popin_content is not empty %}
 		<textarea class="mb-4 whatsapp-message"
 			placeholder="{{ popin_placeholder|striptags|trim }}">{{popin_content|raw}}</textarea>
 		{% else %}
-		<textarea class="mb-4 whatsapp-message"
+		<textarea class="mb-4 whatsapp-message form-control"
 			placeholder="{{ popin_placeholder|striptags|trim }}"></textarea>
 		{% endif %}
 		<span class="whatsapp-message-btn button btn d-flex w-100 justify-content-center">
