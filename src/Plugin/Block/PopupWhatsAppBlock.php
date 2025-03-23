@@ -19,7 +19,6 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
  * )
  */
 final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPluginInterface {
-  
   /**
    *
    * @var LayoutgenentitystylesServices
@@ -45,10 +44,12 @@ final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPlug
    */
   public function defaultConfiguration(): array {
     return [
-      'message' => '', // Message par défaut
+      'message' => '',
+      'placeholder' => '',
       'class_container' => 'right button',
+      'titre' => '',
       'block_load_style_scss_js' => 'hbk_popin/custom-buton',
-      'reseller_page' => FALSE
+      'phone_number' => ''
     ];
   }
   
@@ -62,23 +63,32 @@ final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPlug
       '#type' => 'textarea',
       '#title' => $this->t('Message du popup WhatsApp'),
       '#default_value' => $this->configuration['message'],
-      '#description' => $this->t('Saisissez le message que vous souhaitez afficher dans le popup.')
+      '#description' => $this->t('Saisissez le message que vous souhaitez afficher dans le popup')
     ];
-    
+    //
+    $form['placeholder'] = [
+      '#type' => 'textfield',
+      '#title' => 'Placeholder',
+      '#default_value' => $this->configuration['placeholder']
+    ];
+    $form['titre'] = [
+      '#type' => 'textfield',
+      '#title' => 'Titre',
+      '#default_value' => $this->configuration['titre']
+    ];
     // Ajoute un champ texte pour la classe du conteneur
     $form['class_container'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Class container'),
       '#default_value' => $this->configuration['class_container']
     ];
-    
     // Ajoute un champ pour la page de revendeur
-    $form['reseller_page'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Reseller Page'),
-      '#default_value' => $this->configuration['reseller_page']
+    $form['phone_number'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Phone number'),
+      '#default_value' => $this->configuration['phone_number'],
+      '#required' => true
     ];
-    
     return $form;
   }
   
@@ -89,9 +99,11 @@ final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPlug
   public function blockSubmit($form, FormStateInterface $form_state): void {
     // Sauvegarde la valeur du champ 'message' dans la configuration
     $this->configuration['message'] = $form_state->getValue('message');
-    // Sauvegarde la valeur de 'class_container' et 'reseller_page'
+    // Sauvegarde la valeur de 'class_container' et 'phone_number'
     $this->configuration['class_container'] = $form_state->getValue('class_container');
-    $this->configuration['reseller_page'] = $form_state->getValue('reseller_page');
+    $this->configuration['placeholder'] = $form_state->getValue('placeholder');
+    $this->configuration['phone_number'] = $form_state->getValue('phone_number');
+    $this->configuration['titre'] = $form_state->getValue('titre');
     $library = $this->configuration['block_load_style_scss_js'];
     $this->LayoutgenentitystylesServices->addStyleFromModule($library, 'hbk_you_custom_popup', 'default');
   }
@@ -104,10 +116,14 @@ final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPlug
     // Prépare le rendu avec le message et les attributs nécessaires.
     $content = [
       '#theme' => 'hbk_popin_whatsappmessage',
-      '#content' => $this->configuration['message'],
+      '#popin_content' => $this->configuration['message'],
+      '#popin_placeholder' => $this->configuration['placeholder'],
+      '#phone_number' => $this->configuration['phone_number'],
+      '#popin_titre' => $this->configuration['titre'],
       '#attributes' => [
         'class' => [
-          'whatsapp-popup'
+          'whatsapp-popup',
+          $this->configuration['class_container']
         ]
       ]
     ];

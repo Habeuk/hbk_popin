@@ -1,23 +1,29 @@
-<div {{ attributes.addClass('whatsapp-widget') }}>
+<div {{ attributes.addClass(['whatsapp-widget', 'd-none']) }}>
 	<!-- Le bouton WhatsApp flottant -->
 	<div class="whatsapp-btn">
-		<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"/>
+		<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
 	</div>
-
 	<!-- Textarea pour envoyer un message -->
-	<div
-		class="whatsapp-chat">
+	<div class="whatsapp-chat" data-phone-number="{{phone_number|trim}}">
 		<!-- Bouton de fermeture du chat -->
-		<div class="butonclose d-flex justify-content-end mb-4">
+		<div class="butonclose d-flex justify-content-between mb-4">
+			<strong class="pr-2">{{ popin_titre }}</strong>
 			<button class="d-flex justify-content-center icone-close">
 				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 384 512">
-					<path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+					<path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
 				</svg>
 			</button>
 		</div>
-
 		<!-- Zone de message -->
-		<textarea class="mb-4 whatsapp-message" placeholder="Écris ton message..."></textarea>
-		<button class="whatsapp-message-btn">Envoyer</button>
+		{% if popin_content is not empty %}
+		<textarea class="mb-4 whatsapp-message"
+			placeholder="{{ popin_placeholder|striptags|trim }}">{{popin_content|raw}}</textarea>
+		{% else %}
+		<textarea class="mb-4 whatsapp-message"
+			placeholder="{{ popin_placeholder|striptags|trim }}"></textarea>
+		{% endif %}
+		<button class="whatsapp-message-btn btn">
+			{% trans %}Send{% endtrans %}
+		</button>
 	</div>
 </div>

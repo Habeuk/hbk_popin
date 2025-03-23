@@ -14,7 +14,10 @@ function hbk_popin_theme($existing, $type, $theme, $path) {
   ];
   $hooks['hbk_popin_whatsappmessage'] = [
     'variables' => [
-      'content' => null,
+      'popin_content' => null,
+      'popin_placeholder' => null,
+      'popin_titre' => null,
+      'phone_number' => null,
       'attributes' => NULL
     ]
   ];
