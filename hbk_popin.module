@@ -24,4 +24,3 @@ function hbk_popin_theme($existing, $type, $theme, $path) {
   ];
   return $hooks;
 }
-
