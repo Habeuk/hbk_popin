@@ -1,1 +1,7 @@
 @use "@stephane888/wbu-atomique/scss/organisme/sections/theme_builder/restoRed/redModel/sectionbouton.scss";
+.whatsapp-widget .whatsapp-message-btn.button{
+	svg{
+		width: 2rem;
+		margin-right: 1rem;
+	}
+}

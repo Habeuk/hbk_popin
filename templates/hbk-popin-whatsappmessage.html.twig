@@ -1,7 +1,8 @@
 <div {{ attributes.addClass(['whatsapp-widget', 'd-none']) }}>
 	<!-- Le bouton WhatsApp flottant -->
-	<div class="whatsapp-btn">
-		<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+	<div class="whatsapp-btn bg-wbu-background">
+		<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="d-none" />
+		{% include '@hbk_popin/templates/svg_icon.html.twig' %}
 	</div>
 	<!-- Textarea pour envoyer un message -->
 	<div class="whatsapp-chat" data-phone-number="{{phone_number|trim}}" data-send-email="{{popin_send_email|trim}}">
@@ -9,9 +10,9 @@
 		{% set message_close %} {% trans %}Close the WhatsApp chat window{% endtrans %} {% endset %}
 		<div class="butonclose d-flex justify-content-between mb-4">
 			<strong class="pr-2">{{ popin_titre }}</strong>
-			<button class="d-flex justify-content-center icone-close button" aria-label="{{ message_close }}"  title="{{ message_close }}">
+			<button class="d-flex justify-content-center icone-close button bg-wbu-background" aria-label="{{ message_close }}"  title="{{ message_close }}">
 				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 384 512">
-					<path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+					<path fill="#fff" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
 				</svg>
 				<span class="visually-hidden">{{ message_close }}</span>
 			</button>
@@ -25,8 +26,8 @@
 		<textarea class="mb-4 whatsapp-message form-control"
 			placeholder="{{ popin_placeholder|striptags|trim }}"></textarea>
 		{% endif %}
-		<span class="whatsapp-message-btn button btn d-flex w-100 justify-content-center">
-			<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:20px;" class="me-2" /> {% trans %}Send{% endtrans %}
+		<span class="whatsapp-message-btn button btn d-flex w-100 justify-content-center align-items-center bg-wbu-background">
+			{% include '@hbk_popin/templates/svg_icon.html.twig' %} {% trans %}Send{% endtrans %}
 		</span>
 	</div>
 </div>
