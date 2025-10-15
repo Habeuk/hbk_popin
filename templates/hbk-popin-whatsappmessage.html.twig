@@ -7,7 +7,7 @@
 	<!-- Textarea pour envoyer un message -->
 	<div class="whatsapp-chat" data-phone-number="{{phone_number|trim}}" data-send-email="{{popin_send_email|trim}}">
 		<!-- Bouton de fermeture du chat -->
-		{% set message_close %} {% trans %}Close the WhatsApp chat window{% endtrans %} {% endset %}
+		{% set message_close %} {{'Close the WhatsApp chat window'|t}} {% endset %}
 		<div class="butonclose d-flex justify-content-between mb-4">
 			<strong class="pr-2">{{ popin_titre }}</strong>
 			<button class="d-flex justify-content-center icone-close button bg-wbu-background" aria-label="{{ message_close }}"  title="{{ message_close }}">
@@ -17,7 +17,7 @@
 				<span class="visually-hidden">{{ message_close }}</span>
 			</button>
 		</div>
-		<input class="user-contact form-control border-radius-5 mb-3 " type="text" placeholder="{% trans %}Email or phone number{% endtrans %}" />
+		<input class="user-contact form-control border-radius-5 mb-3 " type="text" placeholder="{{'Email or phone number'|t}}" />
 		<!-- Zone de message -->
 		{% if popin_content is not empty %}
 		<textarea class="mb-4 whatsapp-message"
@@ -27,7 +27,7 @@
 			placeholder="{{ popin_placeholder|striptags|trim }}"></textarea>
 		{% endif %}
 		<span class="whatsapp-message-btn button btn d-flex w-100 justify-content-center align-items-center bg-wbu-background">
-			{% include '@hbk_popin/templates/svg_icon.html.twig' %} {% trans %}Send{% endtrans %}
+			{% include '@hbk_popin/templates/svg_icon.html.twig' %} {{'Send'|t}}
 		</span>
 	</div>
 </div>
