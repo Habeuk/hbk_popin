@@ -5,8 +5,9 @@ popin_style:
   js:
     js/popin.js: {}            
   dependencies:
-    - core/once
     - core/drupal
+    - core/once
+    
 
 popin_whasapp:
   css:
@@ -15,5 +16,6 @@ popin_whasapp:
   js:        
     js/drupal-whatsapp.js: {}          
   dependencies:
-    - core/once
     - core/drupal
+    - core/once
+    

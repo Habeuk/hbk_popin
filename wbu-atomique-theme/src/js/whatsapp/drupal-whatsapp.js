@@ -1,15 +1,14 @@
 import whatsappMessage from "./whatsapp.js";
 import "../../scss/whatsapp/whatsapp.scss";
-/**
- * il faudra documenter.
- */
-(function (Drupal) {
-  Drupal.behaviors.popup = {
-    attach: function (context, settings) {
-      if (context.querySelectorAll && context.querySelectorAll(".whatsapp-widget").length) {
+
+(function (Drupal, once) {
+  Drupal.behaviors.hbkPopinWhatsapp = {
+    attach(context, settings) {
+      const widgets = once("hbkPopinWhatsapp", ".whatsapp-widget", context);
+      if (widgets.length) {
         const message = new whatsappMessage(context, settings);
         message.init();
       }
     },
   };
-})(window.Drupal);
+})(window.Drupal, window.once);

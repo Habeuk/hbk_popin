@@ -1,7 +1,6 @@
 import "../scss/popin.scss";
-
 import popin from "./popin";
-(function (Drupal) {
+(function (Drupal, once) {
   Drupal.behaviors.myModuleBehavior = {
     attach: function (context, settings) {
       if (once("hbkPopin", ".hbk_popin_block", context).length > 0) {
@@ -11,4 +10,4 @@ import popin from "./popin";
     },
   };
   //
-})(Drupal);
+})(window.Drupal, window.once);

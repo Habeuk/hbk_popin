@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - hbk_popin
+id: hbk_popin_whatsapp_message_save_action
+label: 'Save whatsapp_messages'
+type: hbk_popin_whatsapp_message
+plugin: entity:save_action:hbk_popin_whatsapp_message
+configuration: {  }

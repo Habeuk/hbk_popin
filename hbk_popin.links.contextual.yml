@@ -1,0 +1,10 @@
+entity.hbk_popin_whatsapp_message.edit_form:
+  route_name: entity.hbk_popin_whatsapp_message.edit_form
+  group: hbk_popin_whatsapp_message
+  title: 'Edit'
+
+entity.hbk_popin_whatsapp_message.delete_form:
+  route_name: entity.hbk_popin_whatsapp_message.delete_form
+  group: hbk_popin_whatsapp_message
+  title: 'Delete'
+  weight: 10

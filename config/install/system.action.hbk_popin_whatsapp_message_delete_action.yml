@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - hbk_popin
+id: hbk_popin_whatsapp_message_delete_action
+label: 'Delete whatsapp_messages'
+type: hbk_popin_whatsapp_message
+plugin: entity:delete_action:hbk_popin_whatsapp_message
+configuration: {  }

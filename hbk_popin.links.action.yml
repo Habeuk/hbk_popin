@@ -1,0 +1,5 @@
+hbk_popin_whatsapp_message.add_form:
+  title: 'Add Whatsapp message'
+  route_name: entity.hbk_popin_whatsapp_message.add_form
+  appears_on:
+    - entity.hbk_popin_whatsapp_message.collection

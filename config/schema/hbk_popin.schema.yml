@@ -8,8 +8,29 @@ block.settings.hbk_popin:
 
 block.settings.hbk_popin_popup:
   type: block_settings
-  label: 'popup block'
+  label: 'HBK Popin - Popup WhatsApp block settings'
   mapping:
-    example:
+    message:
+      type: text
+      label: 'Message'
+      translatable: true
+    placeholder:
+      type: label
+      label: 'Placeholder'
+      translatable: true
+    titre:
+      type: label
+      label: 'Titre'
+      translatable: true
+    phone_number:
       type: string
-      label: Example
+      label: 'Phone number'
+      translatable: false
+    send_email:
+      type: email
+      label: 'Send copy to'
+      translatable: false
+    class_container:
+      type: string
+      label: 'Container classes'
+      translatable: false

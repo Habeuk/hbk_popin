@@ -1,0 +1,11 @@
+entity.hbk_popin_whatsapp_message.settings:
+  title: 'Whatsapp message'
+  description: 'Configure a whatsapp_message entity type.'
+  route_name:  entity.hbk_popin_whatsapp_message.settings
+  parent: system.admin_structure
+
+entity.hbk_popin_whatsapp_message.collection:
+  title: 'Whatsapp messages'
+  description: 'List of whatsapp_messages.'
+  route_name: entity.hbk_popin_whatsapp_message.collection
+  parent: system.admin_content

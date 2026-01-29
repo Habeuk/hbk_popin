@@ -1,0 +1,3 @@
+administer hbk_popin_whatsapp_message:
+  title: 'Administer whatsapp_messages'
+  restrict access: true
