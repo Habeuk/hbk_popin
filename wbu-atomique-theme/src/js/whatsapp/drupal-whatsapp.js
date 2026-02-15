@@ -1,4 +1,5 @@
 import whatsappMessage from "./whatsapp.js";
+import AnimateText from "../animate_text/style.js";
 import "../../scss/whatsapp/whatsapp.scss";
 
 (function (Drupal, once) {
@@ -8,6 +9,9 @@ import "../../scss/whatsapp/whatsapp.scss";
       if (widgets.length) {
         const message = new whatsappMessage(context, settings);
         message.init();
+        //
+        const animateText = new AnimateText(context, settings);
+        animateText.init();
       }
     },
   };

@@ -66,6 +66,12 @@ final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPlug
       '#default_value' => $this->configuration['message'],
       '#description' => $this->t('Saisissez le message que vous souhaitez afficher dans le popup')
     ];
+    $form['message_animate'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Message du popup WhatsApp'),
+      '#default_value' => $this->configuration['message_animate'],
+      '#description' => $this->t('Saisissez les textes qui seront animés')
+    ];
     //
     $form['placeholder'] = [
       '#type' => 'textfield',
@@ -111,9 +117,7 @@ final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPlug
     $this->configuration['phone_number'] = $form_state->getValue('phone_number');
     $this->configuration['titre'] = $form_state->getValue('titre');
     $this->configuration['send_email'] = $form_state->getValue('send_email');
-    // $library = $this->configuration['block_load_style_scss_js'];
-    // $this->LayoutgenentitystylesServices->addStyleFromModule($library,
-    // 'hbk_you_custom_popup', 'default');
+    $this->configuration['message_animate'] = $form_state->getValue('message_animate');
   }
   
   /**
@@ -136,6 +140,12 @@ final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPlug
         ]
       ]
     ];
+    $content['#attached']['drupalSettings']['hbk_popin'] = [
+      'whatsapp' => [
+        'number' => $this->configuration['phone_number'] ?? '',
+        'message_animate' => $this->configuration['message_animate'] ?? ''
+      ]
+    ];
     $content['#attached']['library'][] = 'hbk_popin/popin_whasapp';
     //
     return [
@@ -143,5 +153,4 @@ final class PopupWhatsAppBlock extends BlockBase implements ContainerFactoryPlug
       '#attributes' => []
     ];
   }
-  
 }

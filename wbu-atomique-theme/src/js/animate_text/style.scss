@@ -1,0 +1,23 @@
+/* hbk_popin/css/popin_whatsapp.css */
+.whatsapp-popup {
+  .content-animate-text {
+    position: absolute;
+    right: calc(100% - 10px);
+    left: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: auto;
+    border-radius: 10px 0 0 10px;
+    max-width: 0;
+    transition: max-width 0.4s ease-in-out;
+    &.active {
+      max-width: 300px;
+    }
+    .text-animate {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+  }
+}

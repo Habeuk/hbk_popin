@@ -24,6 +24,7 @@ class whatsappMessage {
   ShowTextarea(whatsappElement) {
     whatsappElement.querySelector(".whatsapp-chat").classList.add("open");
     whatsappElement.querySelector(".whatsapp-btn").classList.remove("open");
+    this.emitEvent("whatsapp:opened", {});
   }
   hideTextarea(whatsappElement) {
     whatsappElement.querySelector(".whatsapp-chat").classList.remove("open");
@@ -116,6 +117,20 @@ class whatsappMessage {
     if (/Mobi|Android|iPhone|iPod/i.test(ua)) deviceType = "Mobile";
     if (/iPad|Tablet/i.test(ua)) deviceType = "Tablette";
     return `${deviceType} (${os}, ${browser})`;
+  }
+  /**
+   * Émet un événement personnalisé
+   * @param {string} eventName - Nom de l'événement
+   * @param {Object} detail - Données supplémentaires
+   */
+  emitEvent(eventName, detail = {}) {
+    const event = new CustomEvent(eventName, {
+      detail: {
+        ...detail,
+      },
+      bubbles: true,
+    });
+    this.context.dispatchEvent(event);
   }
 }
 export default whatsappMessage;
